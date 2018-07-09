@@ -53,7 +53,8 @@ class panier_produit{
         }
 
         // TODO select all the products in the cart
-        $query = 'SELECT panier_produit.id, produit.nom, produit.description, produit.prix_ht FROM panier_produit LEFT JOIN produit ON produit.id = panier_produit.produit_id LEFT JOIN panier ON panier.id = panier_produit.panier_id WHERE panier.utilisateur_id = :utilisateur_id';
+        $query = 'SELECT produit.id, panier_produit.id, produit.nom, produit.description, produit.prix_ht FROM panier_produit LEFT JOIN produit ON produit.id = panier_produit.produit_id LEFT JOIN panier ON panier.id = panier_produit.panier_id WHERE panier.utilisateur_id = :utilisateur_id';
+
         if($_SESSION['role_id'] == 1){
             $utilisateur_id = $this->get['utilisateur_id'];
         }

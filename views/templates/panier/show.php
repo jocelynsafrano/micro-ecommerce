@@ -43,9 +43,9 @@
 
 <div class="row">
   <div class="col-sm-6">
-  <?= "Montant HT : <strong>" . $totalPanier[0]['total_panier_ht'] . "€</strong>"?>
+  <?= "Montant HT : <strong>" . number_format($totalPanier[0]['total_panier_ht'], 2, ',', ' ') . "€</strong>"?>
   <br>
-  <?= "Montant : <strong>" . $totalPanier[0]['total_panier'] . "€</strong>"?>
+  <?= "Montant : <strong>" . number_format($totalPanier[0]['total_panier'], 2, ',', ' ') . "€</strong>"?>
   </div>
   <div class="col-sm-6">
     <a class="btn btn-primary" href="index.php?controller=commande_produit&amp;action=store" role="button">Valider la commande</a>

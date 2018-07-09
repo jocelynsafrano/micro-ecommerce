@@ -45,3 +45,5 @@ Création d'un menu adaptable au role de l'utilisateur
     - Gestion des messages affichés aux utilisateurs après chaque action (À finir)
 
 
+[] Tester et sécuriser les routes
+[] Afficher la quantité dans le panier et sur la commande

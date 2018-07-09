@@ -1,5 +1,4 @@
 <?php $title = 'Liste de nos produits'?>
-<?= $_SESSION['id']?>
 <?php ob_start(); ?>
 <div class="container pt-4">
   <h1 class="text-left"><?= $title ?></h1>

@@ -126,6 +126,24 @@ class commande_produit{
 
         $produits = $this->Sql($req, 'commande_id','nom_produit', 'description_produit', 'prix_ht', $bind);
         
+        // Nombre de produits
+
+        $query = "SELECT COUNT(*) FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande.utilisateur_id = :utilisateur_id";
+        
+        $bind = array ( "utilisateur_id" => $_SESSION['id']);
+        $returnFields = ['COUNT(*)'];
+
+        $nombreProduits = $this->StructList($query, $returnFields, $bind);
+        
+        // Totaux
+
+        $query = "SELECT SUM(produit.prix_ht) AS total_commande_ht, SUM(produit.prix_ht + (produit.prix_ht * 20/100)) AS total_commande FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande.utilisateur_id = :utilisateur_id";
+        
+        $bind = array ( "utilisateur_id" => $_SESSION['id']);
+        $returnFields = ['total_commande', 'total_commande_ht'];
+
+        $totalCommande = $this->StructList($query, $returnFields, $bind);
+
         require '../views/templates/commande/show.php';
         // TODO : add total in cart
 
