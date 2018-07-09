@@ -38,26 +38,22 @@ class categorie{
             exit;
         }
 
-        if(!isset($this->get['categorie_id']) || empty($this->get['categorie_id'])){
-            
-            $_SESSION['messages'] = [
-                'body' => "Malheuresement, vous n've aps sélectionné une catégorie !",
-                'type' => "danger"
-            ];
-
-            if(isset($_SERVER['HTTP_REFERER'])){
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-                exit;
-            } 
-            
-            header('Location: index.php?controller=auth&action=index');
-            exit;
-        }
+    
         $query = 'SELECT id, nom, description, date_creation, date_modification FROM categorie WHERE is_deleted = 0';
         $returnFields = ['id', 'nom', 'description', 'date_creation', 'date_modification'];
         
         $categories = $this->StructList($query, $returnFields);
         
+
+        if(empty($categories)){
+            $_SESSION['messages'] = [
+                'body' => 'Malheureseuemnt, Vous ne disposez pas de categories.<a class="ml-4" href="index.php?controller=categorie&amp;action=create">(Créer une nouvelle catégorie)</a>',
+                'type' => "danger"
+            ];
+
+            header('Location: index.php?controller=produit&action=index');
+            exit;
+        }
         return require '../views/templates/categorie/index.php';
     }
 
@@ -295,21 +291,6 @@ class categorie{
         return $this->index();
     }
 
-    public static function select_cat(){
-        $query = 'SELECT * FROM categorie';
-        $fields = ['id', 'nom'];
-
-        $c = new categorie;
-        $categorie = $c->StructList($query, $fields);
-
-        require '../views/templates/categorie/index.php';
-    ?>
-        <select name="id" class="form-control">
-            <?php foreach($categories as $categorie){ ?>
-                    <option value="<?php echo categories['id'] ?>" > <?php echo $categories['nom'] ?></option>
-            <?php } ?>
-        </select>
-    <?php }
     
 }
     

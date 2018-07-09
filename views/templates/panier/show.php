@@ -24,7 +24,14 @@
         <td><?= $produit['nom'] ?></td>
         <td><?= $produit['description'] ?></td>
         <td><?= $produit['prix_ht'] . "€" ?></td>
-        <td><a href="index.php?controller=panier_produit&amp;action=destroy&amp;panier_produit_id=<?= $produit['id'] ?>">Retirer du panier</a>
+        <td>
+        
+        <form method="GET" class="delete-form">
+          <input type="hidden" name="controller" value="panier_produit">
+          <input type="hidden" name="action" value="destroy">
+          <input type="hidden" name="panier_produit_id" value="<?= $produit['id'] ?>">
+          <button class="btn btn-primary" type="submit" >Retirer du panier</button> 
+        </form>
         </td>
         
       </tr>
@@ -41,7 +48,7 @@
   <?= "Montant : <strong>" . $totalPanier[0]['total_panier'] . "€</strong>"?>
   </div>
   <div class="col-sm-6">
-    <a class="btn btn-primary" href="index.php?controller=commande_produit&amp;action=store&amp;commande_id" role="button">Valider la commande</a>
+    <a class="btn btn-primary" href="index.php?controller=commande_produit&amp;action=store" role="button">Valider la commande</a>
     </div>
 </div>
   

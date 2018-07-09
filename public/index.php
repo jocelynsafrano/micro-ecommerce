@@ -33,7 +33,7 @@ require('../class/panier/panier.php');
 require('../class/produit/produit.php');
 require('../class/panier/panier_produit.php');
 require('../class/categorie/categorie.php');
-//require('../class/categorie/categorie_produit.php');
+require('../class/categorie/categorie_produit.php');
 
 if(isset($_GET['controller']) && !empty($_GET['controller']) && isset($_GET['action']) && !empty($_GET['action'])){
 
@@ -74,7 +74,8 @@ if(isset($_GET['controller']) && !empty($_GET['controller']) && isset($_GET['act
         
     }elseif($_GET['controller'] == 'produit'){
         $categorie = new categorie;
-        $class = new $className($_POST, $_GET, $categorie);
+        $cp = new categorie_produit;
+        $class = new $className($_POST, $_GET, $categorie, $cp);
         
     }else{
         $class = new $className($_POST, $_GET);

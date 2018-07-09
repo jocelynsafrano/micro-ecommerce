@@ -14,12 +14,15 @@ class produit{
     public $post;
     public $get;
     public $categorie;
+    public $cp;
+    
 
-    public function __construct($post = NULL, $get = NULL, categorie $categorie = NULL){
+    public function __construct($post = NULL, $get = NULL, categorie $categorie = NULL, categorie_produit $cp = NULL){
         $this->post = $post;
         $this->get = $get;
         $this->date_creation = date('Y-m-d');
         $this->categorie = $categorie;
+        $this->cp = $cp;
     }
 
     public function index(){
@@ -29,16 +32,21 @@ class produit{
         
         $produits = $this->StructList($query, $returnFields);
         
-        $config['attr']['id'] = "categorie"; 
+        if(isset($_SESSION['role_id'])){
+            if($_SESSION['id'] == 1){
+                $config['attr']['id'] = "categorie-filter-admin"; 
+            }else{
+                $config['attr']['id'] = "categorie-filter-customer"; 
+            }
+        }else{
+            $config['attr']['id'] = "categorie-filter-customer"; 
+        }
+        
         $config['attr']['class'] = "custom-select col-sm-2 "; 
         ob_start();
         $this->categorie->SelectList( "categorie_id" , "id" , "nom" , $config);
         $categorieListe = ob_get_clean();
 
-      /*  echo "<pre>";
-        var_dump($produits);
-        echo "</pre>";
-die(); */
         if(isset($_SESSION['id'])){
             if($_SESSION['role_id'] == 1){
                 return require '../views/templates/produit/index.php';
@@ -49,42 +57,37 @@ die(); */
     }
 
     public function create(){
+        ob_start();
+        $options['class'] = "custom-select";
+        $options['attr']['multiple'] = "multiple";
+        // selected="selected" 
+        $this->categorie->SelectList("categorie_id[]", "id", "nom", $options);
+        $categorieSelectList = ob_get_clean();
+
         return require '../views/templates/produit/create.php';
     }
 
     public function search(){
-        if(!isset($_SESSION['id'])){
-
-            $_SESSION['messages'] = [
-                'body' => "Vous devrez être connecté pour effectuer cette action !",
-                'type' => "danger"
-            ];
-
-            if(isset($_SERVER['HTTP_REFERER'])){
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
-                exit;
-            } 
-            
-            header('Location: index.php?controller=auth&action=index');
-            exit;
-        }
-        
         if(!isset($this->post['query']) || empty($this->post['query'])){
-            //var_dump($this->post['query']);
+            $query = 'SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 GROUP BY p.id DESC';
+        }else{
+            $query = "SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 AND p.is_deleted = 0 AND p.nom LIKE :nom OR p.description LIKE :description OR c.nom LIKE :nom_categorie GROUP BY p.id";
+
+            $bind = [
+                'nom' => '%' . $this->post['query'] . '%',
+                'description' => '%' . $this->post['query'] . '%',
+                'nom_categorie' => '%' . $this->post['query'] . '%',
+            ];
         }
-
-
-        $query = "SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 AND p.nom LIKE :nom OR p.description LIKE :description OR c.nom LIKE :nom_categorie GROUP BY p.id";
-        
-        $bind = [
-            'nom' => '%' . $this->post['query'] . '%',
-            'description' => '%' . $this->post['query'] . '%',
-            'nom_categorie' => '%' . $this->post['query'] . '%',
-        ];
 
         $returnFields = ['id', 'nom_categorie', 'date_creation', 'date_modification', 'nom', 'description', 'prix_ht'];
         
-        echo $produits = $this->StructList($query, $returnFields, $bind, "json");        
+        if(isset($bind)){
+            echo $produits = $this->StructList($query, $returnFields, $bind, "json");        
+        }else{
+            echo $produits = $this->StructList($query, $returnFields, "json");        
+        }
+        
         return true;
     }
 
@@ -109,10 +112,12 @@ die(); */
             echo "Can't find any product name";
             return;
         }
+
         if(!isset($this->post['description']) || empty($this->post['description'])){
             echo "Can't find any product description";
             return;
         }
+
         if(!isset($this->post['prix_ht']) || empty($this->post['prix_ht'])){
             echo "Can't find any HT price";
             return;
@@ -124,8 +129,27 @@ die(); */
         $this->Set('prix_ht', intval($this->post['prix_ht']));
         $this->Set('is_deleted', 0);
         
-        $this->Add();
-        
+        $produit_id = $this->Add();
+
+        if(isset($this->post['categorie_id'])){
+            
+            foreach($this->post['categorie_id'] as $categorie_id){
+
+                $array = ['categorie_id' => $categorie_id];
+                $array = ['produit_id' => $produit_id];
+                
+                $isFound = $this->cp->Find($array);
+
+
+                if(empty($isFound)){
+                    $this->cp->Set('categorie_id', $categorie_id);
+                    $this->cp->Set('produit_id', $produit_id);
+                    $this->cp->Add();
+                }
+                
+            }
+        }
+
         $this->index();
 
     }
@@ -224,9 +248,24 @@ die(); */
         $this->Set('date_modification', date('Y-m-d'));
 
         $this->Update();
-        
-        //die();
-        
+       
+        if(isset($this->post['categorie_id'])){
+            
+            foreach($this->post['categorie_id'] as $categorie_id){
+
+                $array['categorie_id'] = $categorie_id;
+                $array['produit_id'] = $this->id;
+                
+                $isFound = $this->cp->Find($array);
+
+
+                if(empty($isFound)){
+                    $this->cp->Set('categorie_id', $categorie_id);
+                    $this->cp->Set('produit_id', $this->id);
+                    $this->cp->Add();
+                }
+            }
+        }
         $_SESSION['messages'] = [
             'body' => "Produit a été modifé!",
             'type' => "success"
@@ -253,6 +292,22 @@ die(); */
             header('Location: index.php?controller=auth&action=index');
             exit;
         }
+
+        if($_SESSION['role_id'] != 1){
+
+            $_SESSION['messages'] = [
+                'body' => "vous n'êtes pas autorisé à effectuer cette tâche administrative",
+                'type' => "danger"
+            ];
+
+            if(isset($_SERVER['HTTP_REFERER'])){
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            } 
+            
+            header('Location: index.php?controller=auth&action=index');
+            exit;
+        }
         
         if(!isset($this->get['produit_id']) || empty($this->get['produit_id'])){
             echo "Can't find any product id";
@@ -265,11 +320,28 @@ die(); */
         
         $deleted = $this->Sql($req, $bind);
         
-        $this->index();
+        $_SESSION['messages'] = [
+            'body' => "Produit supprimé avec succès !",
+            'type' => "success"
+        ];
+
+        if(isset($_SERVER['HTTP_REFERER'])){
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit;
+        } 
+        
+        header('Location: index.php?controller=auth&action=index');
+        exit;
     }
 
-    public function filter() { // Passage de l'id en paramètre
-    $query = 'SELECT p.id, p.nom, c.nom AS nom_categorie, p.description, p.prix_ht, p.date_creation, p.date_modification FROM categorie_produit INNER JOIN categorie AS c ON c.id = categorie_produit.categorie_id INNER JOIN produit AS p ON p.id = categorie_produit.produit_id WHERE c.id = :id_categorie';
+    public function filter() {
+         
+        if(!isset($this->get['categorie_id']) || empty($this->get['categorie_id'])){
+            echo "Can't find any product id";
+            return;
+        }
+
+        $query = 'SELECT p.id, p.nom, p.description, c.nom AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 AND c.id = :id_categorie';
 
         $bind = ['id_categorie' => $this->get['categorie_id']];
         

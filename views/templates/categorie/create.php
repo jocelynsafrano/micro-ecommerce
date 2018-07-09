@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="description">Password</label>
-            <input name="description" type="text" class="form-control" id="description" placeholder="Description">
+            <textarea name="description" type="text" class="form-control" id="description">Description...</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

@@ -50,7 +50,16 @@ class commande{
         ];
         
         $commandes = $this->StructList($query, $returnFields, $bind);
-        
+
+        if(empty($commandes)){
+            $_SESSION['messages'] = [
+                'body' => 'Malheureusement ! Vous n\'avez pas encore passé une commande.',
+                'type' => "danger"
+            ];
+            
+            header('Location: index.php?controller=produit&action=index');
+            exit;
+        }
         require '../views/templates/commande/index.php';
     }
 

@@ -25,7 +25,7 @@ Editer le client
 Voir les informations d'un client
 Supprimer un produit
 Editer un produit
-    - Affichage des produits (Duplication de l'affichage des produits appartenant à plusierus catégories)
+Affichage des produits (Duplication de l'affichage des produits appartenant à plusierus catégories) [Résolu]
 Voir lliste des commandes
 Annuler une commande
 Voir liste des paniers ouverts par les clients

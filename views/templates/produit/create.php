@@ -19,11 +19,10 @@
         </div>
 
         <div class="form-group">
-            <label for="">TOODO : LISTE DEROULANTE DES CATEGORIES</label>
-            <input name="" type="text" class="form-control" id="" placeholder="TOODO : LISTE DEROULANTE DES CATEGORIES">
+            <?= $categorieSelectList ?>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mt-4">Submit</button>
         </form>
     </div>
 </div>

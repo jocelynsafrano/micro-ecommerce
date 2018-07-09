@@ -166,6 +166,22 @@ class Auth{
             exit; 
         }
 
+        if(!isset($this->post['role_id']) || empty($this->post['role_id'])){
+
+            $_SESSION['messages'] = [
+                'body' => "Please choose a role ! Client or Administrator",
+                'type' => "danger"
+            ];
+            
+            if(isset($_SERVER['HTTP_REFERER'])){
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            } 
+            
+            header('Location: index.php?controller=auth&action=index');
+            exit; 
+        }
+
         $search = array();
         $search['email'] = $this->post['email'];
         $result = $this->u->Find($search);
@@ -190,7 +206,8 @@ class Auth{
         $this->u->Set('prenom', $this->post['prenom']);
         $this->u->Set('email', $this->post['email']);
         $this->u->Set('mdp', md5($this->post['mdp']));
-        $this->u->Set('role_id', $this->post['role']);
+        $this->u->Set('role_id', $this->post['role_id']);
+        // TODO : Try delete the following line if the field is NULL or has default value on the database
         $this->u->Set('is_deleted', 0);
 
         $this->u->Add();

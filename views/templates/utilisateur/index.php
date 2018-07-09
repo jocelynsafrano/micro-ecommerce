@@ -4,7 +4,7 @@
 <div class="container pt-4">
   <h1 class="text-left"><?= $title ?></h1>
 
-  <table class="table">
+  <table class="table table-responsive" >
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -29,10 +29,14 @@
             <td class="date_creation"><?= $user['date_creation'] ?></td>
             <td class="date_modif"><?= $user['date_modification'] ?></td>
             <td class="actions">
-            <a href="index.php?controller=utilisateur&amp;action=show&amp;id=<?= $user['id'] ?>">Voir</a>
-            <a href="index.php?controller=utilisateur&amp;action=edit&amp;id=<?= $user['id'] ?>">Edit</a>
-            <a href="index.php?controller=utilisateur&amp;action=destroy&amp;id=<?= $user['id'] ?>">Supprimer</a>
-            
+            <a class="btn btn-primary" href="index.php?controller=utilisateur&amp;action=show&amp;id=<?= $user['id'] ?>">Voir</a>
+            <a class="btn btn-primary" href="index.php?controller=utilisateur&amp;action=edit&amp;id=<?= $user['id'] ?>">Edit</a>
+            <form method="GET" class="delete-form">
+            <input type="hidden" name="controller" value="utilisateur">
+            <input type="hidden" name="action" value="destroy">
+            <input type="hidden" name="id" value="<?= $user['id'] ?>">
+            <button class="btn btn-primary" type="submit" >Supprimer</button> 
+            </form>
             
             </td>
             

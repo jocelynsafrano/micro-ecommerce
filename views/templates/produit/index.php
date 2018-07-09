@@ -37,9 +37,16 @@
 
             <td>
             <?php if($_SESSION['role_id'] == 1): ?>
-
-            <a class="btn btn-primary" href="index.php?controller=produit&amp;action=edit&amp;produit_id=<?= $produit['id'] ?>">Modifier</a> </td>
-            <td> <a class="btn btn-primary" href="index.php?controller=produit&amp;action=destroy&amp;produit_id=<?= $produit['id'] ?>">Supprimer</a> </td>
+            
+            <a class="btn btn-primary" type="submit" href="index.php?controller=produit&amp;action=edit&amp;produit_id=<?= $produit['id'] ?>" >Modifier</a></td>
+            <td> 
+           <form method="GET" class="delete-form">
+            <input type="hidden" name="controller" value="produit">
+            <input type="hidden" name="action" value="destroy">
+            <input type="hidden" name="produit_id" value="<?= $produit['id'] ?>">
+            <button class="btn btn-primary" type="submit" >Supprimer</button> 
+            </form>
+            </td>
             
             <?php else:  ?>
             <a class="btn btn-primary" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=<?= $produit['id'] ?>">Ajouter au panier</a>

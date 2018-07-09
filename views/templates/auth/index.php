@@ -1,90 +1,76 @@
 <?php $title = 'Login Form' ?>
 
 <?php ob_start();?>
-<div class="form">
-      
-      <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
-      </ul>
-      
-      <div class="tab-content">
-        <div id="signup">   
-          <h1>Sign Up for Free</h1>
-          
-          <form action="index.php?controller=auth&amp;action=signup" method="post">
-          
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                First Name<span class="req">*</span>
-              </label>
-              <input name="prenom" type="text"  autocomplete="off" />
-            </div>
-           
+<div class="login-container">
+  <div class="login-box">   
+    <div class="header">
+      <h3>LOGIN</h3>
+    </div>
+    <form method="POST" action="index.php?controller=auth&amp;action=login" class="content">
+        <div class="input-box">
+          <input name="email" type="text" placeholder=" ">
+          <span>E-mail</span>
+          <span></span>
+        </div>
+        <div class="input-box">
+          <input name="mdp" type="password" placeholder=" ">
+          <span>password</span>
+          <span></span>
+        </div>
+        <div class="input-box">
+          <button type="submit">Se connecter</button>
+      <!-- TODO : Maybe code this functioannlity and add password confirmation
+           <div>
+            <a href="#">Forgot your password?</a>
+          </div> -->
+        </div>
 
-            <div class="field-wrap">
-              <label>
-                Last Name<span class="req">*</span>
-              </label>
-              <input name="nom" type="text" autocomplete="off"/>
-            </div>
-          </div>
+      </form>
+    </div>
 
-          <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input name="email" type="email"autocomplete="off"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Set A Password<span class="req">*</span>
-            </label>
-            <input name="mdp" type="password" autocomplete="off"/>
-          </div>
-          <select name="role" class="custom-select mb-4">
-              <option selected value="2">Client</option>
-              <option value="1">Admin </option>
-            </select>
-
-          <button type="submit" class="button button-block"/>Get Started</button>
-          
-          </form>
-
+  
+  <div class="login-box register-box">
+    <span class="close">+</span>
+    <div class="header">
+      <h3>REGISTER</h3>
+    </div>
+    <form method="POST" action="index.php?controller=auth&amp;action=signup" class="content">
+        <div class="input-box">
+          <input name="nom" type="text">
+          <span>Votre nom :</span>
+          <span></span>
+        </div>
+        <div class="input-box">
+          <input name="prenom" type="text" >
+          <span>Votre prénom :</span>
+          <span></span>
+        </div>
+        <div class="input-box">
+          <input name="email" type="text">
+          <span>Votre e-mail :</span>
+          <span></span>
+        </div>
+        <div class="input-box">
+          <input name="mdp" type="password">
+          <span>Votre mot de passe :</span>
+          <span></span>
+        </div>
+         <div class="input-box">
+          <select name="role_id" id="monselect">
+            <option value="1">Admin</option> 
+            <option value="2" selected>Client</option>
+          </select>
         </div>
         
-        <div id="login">   
-          <h1>Welcome Back!</h1>
-          
-          <form action="index.php?controller=auth&amp;action=login" method="post">
-          
-            <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input name="email" type="email" autocomplete="off"/>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Password<span class="req">*</span>
-            </label>
-            <input name="mdp" type="password" autocomplete="off"/>
-          </div>
-          
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
-          
-          <button class="button button-block"/>Log In</button>
-          
-          </form>
-
+        <div class="input-box">
+          <button type="submit" é>S'iscrire</button>          
         </div>
-        
-      </div><!-- tab-content -->
-      
-</div> <!-- /form -->
+</form>
+  </div>
+  </div>
+ 
+</div>
+
 <?php $content = ob_get_clean();?>
 
 <?php require('../views/index.php'); ?>
