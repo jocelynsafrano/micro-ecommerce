@@ -46,7 +46,8 @@ if(isset($_GET['controller']) && !empty($_GET['controller']) && isset($_GET['act
             'body' => "404 Error",
             'type' => "danger"
         ];
-        header('Location: index.php?controller=auth&action=index');
+        
+        header('Location: index.php?controller=produit&action=index');
         exit;
     }
 
@@ -55,8 +56,10 @@ if(isset($_GET['controller']) && !empty($_GET['controller']) && isset($_GET['act
             'body' => "404 Error",
             'type' => "danger"
         ];
-        header('Location: index.php?controller=auth&action=index');
-        exit;
+        
+
+        header('Location: index.php?controller=produit&action=index');
+    exit;
     }
 
     if($_GET['controller'] == 'auth'){

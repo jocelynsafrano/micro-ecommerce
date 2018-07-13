@@ -137,7 +137,6 @@ class commande_produit{
         $returnFields = ['COUNT(*)'];
 
         $nombreProduits = $this->StructList($query, $returnFields, $bind);
-        var_dump($nombreProduits);
         // Totaux
 
         $query = "SELECT SUM(produit.prix_ht) AS total_commande_ht, SUM(produit.prix_ht + (produit.prix_ht * 20/100)) AS total_commande FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande_produit.commande_id = :commande_id";

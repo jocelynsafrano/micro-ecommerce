@@ -1,13 +1,14 @@
 <?php $title = 'Liste des produits'?>
 
 <?php ob_start(); ?>
+<div class="container">
   <h1 class="text-left"><?= $title ?></h1>
 
     <a class="btn btn-primary m-4" href="index.php?controller=produit&amp;action=create" role="button">Créer un produit</a>
     <input name="nom_produit" class="form-control mr-sm-2 col-sm-6 ml-auto" style="display: inline-block;" type="search" id="search-admin" placeholder="Search" aria-label="Search">
 
 
-  <table class="table">
+  <table class="table table-responsive">
     <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
@@ -60,9 +61,7 @@
     </tbody>
   </table>
 </div>
-<script>
 
-  </script>
 <?php $content = ob_get_clean(); ?>
 
 <?php require '../views/index.php'; ?>

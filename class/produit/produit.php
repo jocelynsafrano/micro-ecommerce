@@ -56,6 +56,97 @@ class produit{
         return require '../views/templates/produit/front/index.php';
     }
 
+    public function nouveautes(){
+        if($_SESSION['role_id'] == 1) :
+            $_SESSION['messages'] = [
+                'body' => "Vous devrez connecté en tant que client pour pouvoir effectuer cette tâche !",
+                'type' => "danger"
+            ];
+
+            if(isset($_SERVER['HTTP_REFERER'])){
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            } 
+            
+            header('Location: index.php?controller=auth&action=index');
+            exit;
+        endif;
+        
+        $query = 'SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 GROUP BY p.id DESC LIMIT 0, 10';
+    
+        $returnFields = ['id', 'nom', 'description', 'nom_categorie', 'prix_ht', 'date_creation', 'date_modification'];
+        
+        $produits = $this->StructList($query, $returnFields);
+        
+        if(isset($_SESSION['role_id'])){
+            if($_SESSION['id'] == 1){
+                $config['attr']['id'] = "categorie-filter-admin"; 
+            }else{
+                $config['attr']['id'] = "categorie-filter-customer"; 
+            }
+        }else{
+            $config['attr']['id'] = "categorie-filter-customer"; 
+        }
+        
+        $_SESSION['messages'] = [
+            'body' => "Voici la liste des 10 nouveautés",
+            'type' => "success"
+        ];
+
+        $config['attr']['class'] = "custom-select col-sm-2 "; 
+        ob_start();
+        $this->categorie->SelectList( "categorie_id" , "id" , "nom" , $config);
+        $categorieListe = ob_get_clean();
+        
+        return require '../views/templates/produit/front/index.php';
+    }
+
+    
+    public function meilleuresventes(){
+        if($_SESSION['role_id'] == 1) :
+            $_SESSION['messages'] = [
+                'body' => "Vous devrez connecté en tant que client pour pouvoir effectuer cette tâche !",
+                'type' => "danger"
+            ];
+
+            if(isset($_SERVER['HTTP_REFERER'])){
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                exit;
+            } 
+            
+            header('Location: index.php?controller=auth&action=index');
+            exit;
+        endif;
+        
+        $query = 'SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id LEFT JOIN commande_produit ON p.id = commande_produit.produit_id WHERE p.is_deleted = 0 GROUP BY p.id DESC LIMIT 0 , 10';
+    
+        $returnFields = ['id', 'nom', 'description', 'nom_categorie', 'prix_ht', 'date_creation', 'date_modification'];
+        
+        $produits = $this->StructList($query, $returnFields);
+        
+        if(isset($_SESSION['role_id'])){
+            if($_SESSION['id'] == 1){
+                $config['attr']['id'] = "categorie-filter-admin"; 
+            }else{
+                $config['attr']['id'] = "categorie-filter-customer"; 
+            }
+        }else{
+            $config['attr']['id'] = "categorie-filter-customer"; 
+        }
+        
+        $_SESSION['messages'] = [
+            'body' => "Voici la liste de nos meilleures ventes !",
+            'type' => "success"
+        ];
+
+        $config['attr']['class'] = "custom-select col-sm-2 "; 
+        ob_start();
+        $this->categorie->SelectList( "categorie_id" , "id" , "nom" , $config);
+        $categorieListe = ob_get_clean();
+        
+        return require '../views/templates/produit/front/index.php';
+    }
+
     public function create(){
         ob_start();
         $options['class'] = "custom-select";

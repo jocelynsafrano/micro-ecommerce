@@ -15,10 +15,18 @@
     
 
 <div id="content">
-<div class="menu-trigger"></div>
-<div class="container mt-4">
+    <?php if(isset($_SESSION['id'])) :?>
+        <?php if($_SESSION['role_id'] != 1 && $_GET['controller'] != "auth") :?>
+            <?php include '../views/_partials/navbar.php';?>
+        <?php endif;?>
+        <?php else :?>
+        <div class="menu-trigger ml-4"></div>
+
+<?php endif; ?>
+<div class="container m-4">
         <?php include '../views/_partials/messages.php';?>
-    </div>
+
+</div>
 
 <?php  if(isset($content)){echo $content;}else{ echo 'Bienvenue';} ?>
 </div>
