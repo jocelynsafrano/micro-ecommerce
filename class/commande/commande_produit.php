@@ -117,29 +117,35 @@ class commande_produit{
             exit;
         }
        
-        $req = "SELECT commande_produit.id, `commande_id`, `produit_id`, produit.nom nom_produit, produit.description description_produit , prix_ht FROM `commande_produit` INNER JOIN produit ON produit.id = commande_produit.produit_id LEFT JOIN commande ON commande.id = commande_produit.commande_id WHERE commande_produit.commande_id = :commande_id AND commande.utilisateur_id = :utilisateur_id";
+        $req = "SELECT commande_produit.id, `commande_id`, `produit_id`, produit.nom nom_produit, produit.description description_produit , prix_ht FROM `commande_produit` INNER JOIN produit ON produit.id = commande_produit.produit_id LEFT JOIN commande ON commande.id = commande_produit.commande_id WHERE commande_produit.commande_id = :commande_id";
         
         $bind = array(
             "commande_id" => $this->get['commande_id'],
-            "utilisateur_id" => $_SESSION['id']
         );
 
         $produits = $this->Sql($req, 'commande_id','nom_produit', 'description_produit', 'prix_ht', $bind);
         
         // Nombre de produits
 
-        $query = "SELECT COUNT(*) FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande.utilisateur_id = :utilisateur_id";
+        $query = "SELECT COUNT(*) FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande_produit.commande_id = :commande_id";
         
-        $bind = array ( "utilisateur_id" => $_SESSION['id']);
+        
+        $bind = array(
+            "commande_id" => $this->get['commande_id'],
+        );
+
         $returnFields = ['COUNT(*)'];
 
         $nombreProduits = $this->StructList($query, $returnFields, $bind);
-        
+        var_dump($nombreProduits);
         // Totaux
 
-        $query = "SELECT SUM(produit.prix_ht) AS total_commande_ht, SUM(produit.prix_ht + (produit.prix_ht * 20/100)) AS total_commande FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande.utilisateur_id = :utilisateur_id";
+        $query = "SELECT SUM(produit.prix_ht) AS total_commande_ht, SUM(produit.prix_ht + (produit.prix_ht * 20/100)) AS total_commande FROM commande_produit INNER JOIN produit ON produit.id = commande_produit.produit_id INNER JOIN commande ON commande.id = commande_produit.commande_id WHERE commande_produit.commande_id = :commande_id";
         
-        $bind = array ( "utilisateur_id" => $_SESSION['id']);
+        $bind = array(
+            "commande_id" => $this->get['commande_id'],
+        );
+
         $returnFields = ['total_commande', 'total_commande_ht'];
 
         $totalCommande = $this->StructList($query, $returnFields, $bind);
