@@ -54,9 +54,7 @@ This procedure is called routing and its router is found at the publicly accessi
 
 > The /public folder must have 777 access rights in order for the users to access the application!
 
-2. **Application' assets** 
-
-The assets (Javascript, CSS files are located respectively in the /public/js and the /public/css)
+1. **Application' architecture** 
 
 | Folder or File        | Function          | Comments  |
 | ------------- |-------------| -----|
