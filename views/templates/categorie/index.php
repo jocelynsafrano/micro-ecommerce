@@ -4,7 +4,7 @@
 <div class="container pt-4">
   <h1 class="text-left"><?= $title ?></h1>
   <?php if($_SESSION['role_id'] == 1):?>
-  <a class="btn btn-primary m-4" href="index.php?controller=categorie&amp;action=create" role="button">Créer une catégorie</a>
+  <a class="btn btn-primary produits m-4" href="index.php?controller=categorie&amp;action=create" role="button">Créer une catégorie</a>
 <?php endif; ?>
   <table class="table">
     <thead class="thead-dark">
@@ -29,13 +29,13 @@
       <td><?= $categorie['description'] ?></td>
       <td><?= $categorie['date_creation'] ?></td>
       <td><?= $categorie['date_modification'] ?></td>
-      <td><a class="btn btn-primary" href="index.php?controller=categorie&amp;action=edit&amp;categorie_id=<?= $categorie['id'] ?>">Modifier la catégorie</a></td>
+      <td><a class="btn btn-primary produits" href="index.php?controller=categorie&amp;action=edit&amp;categorie_id=<?= $categorie['id'] ?>">Modifier la catégorie</a></td>
       <td>
       <form method="GET" class="delete-form">
         <input type="hidden" name="controller" value="categorie">
         <input type="hidden" name="action" value="destroy">
         <input type="hidden" name="categorie_id" value="<?= $categorie['id'] ?>">
-        <button class="btn btn-primary" type="submit" >Supprimer la catégorie</button> 
+        <button class="btn btn-primary produits" type="submit" >Supprimer la catégorie</button> 
       </form>       
       </tr>
   <?php 

@@ -30,7 +30,7 @@
           <input type="hidden" name="controller" value="panier_produit">
           <input type="hidden" name="action" value="destroy">
           <input type="hidden" name="panier_produit_id" value="<?= $produit['id'] ?>">
-          <button class="btn btn-primary" type="submit" >Retirer du panier</button> 
+          <button class="btn btn-primary produits" type="submit" >Retirer du panier</button> 
         </form>
         </td>
         
@@ -40,15 +40,15 @@
   endforeach;?>
     </tbody>
   </table>
-
+<br />
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-6 panier">
   <?= "Montant HT : <strong>" . number_format($totalPanier[0]['total_panier_ht'], 2, ',', ' ') . "€</strong>"?>
   <br>
   <?= "Montant : <strong>" . number_format($totalPanier[0]['total_panier'], 2, ',', ' ') . "€</strong>"?>
   </div>
-  <div class="col-sm-6">
-    <a class="btn btn-primary" href="index.php?controller=commande_produit&amp;action=store" role="button">Valider la commande</a>
+  <div class="col-sm-6 panier">
+    <a class="btn btn-primary produits" href="index.php?controller=commande_produit&amp;action=store" role="button">Valider la commande</a>
     </div>
 </div>
   

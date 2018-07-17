@@ -28,7 +28,7 @@
     height: 50px;
     line-height: 50px;
     position: relative;
-    color: #1f6b98;
+    color: #45a3a6;
   }
   .login-container .login-box .header:before {
     content: "";
@@ -38,7 +38,7 @@
     display: inline-block;
     height: 100%;
     width: 8px;
-    background: #1f6b98;
+    background: #45a3a6;
   }
   .login-container .login-box .content {
     padding: 10px;
@@ -102,7 +102,7 @@
     padding-top: 20px;
   }
   .login-container .login-box.register-box {
-    background: #1f6b98;
+    background: #45a3a6;
     position: absolute;
     top: 30px;
     right: -20px;
@@ -119,13 +119,20 @@
     background: #fff;
     opacity: 0;
   }
+
+  .login-container .login-box .header h3 {
+    color: #7C7C7D;
+  }
+  
   .login-container .login-box.register-box .header h3 {
     position: relative;
-    top: 0;
-    left: -26px;
+    top: 2px;
+    left: -36px;
     font-size: 14px;
     transition: all .3s linear;
+    color: #fff
   }
+
   .login-container .login-box.register-box .content .input-box {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -164,15 +171,16 @@
   .login-container .login-box.register-box.open .header:before {
     opacity: 1;
   }
-  .login-container .login-box.register-box.open .header h3 {
-    top: 0;
-    left: 0;
-    font-size: initial;
-  }
+
   .login-container .login-box.register-box.open .close {
     transform: rotate(135deg);
     top: 43px;
     opacity: 1;
     transition: all 0.3s 0.3s linear;
   }
-
+  #slide-menu {
+    background-color: #45a3a6;
+  }
+  .btn.btn-primary.produits {
+    background-color: #45a3a6;
+  }

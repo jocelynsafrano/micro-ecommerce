@@ -21,7 +21,7 @@
         
         <input name="utilisateur_id" type="hidden" value="<?= $user['id'] ?>">
         
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary produits">Submit</button>
     </form>
 </div>
 </div>  

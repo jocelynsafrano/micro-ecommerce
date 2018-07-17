@@ -16,6 +16,10 @@ body {
   font: 18px/27px 'Oxygen', sans-serif;
 }
 
+#slide-menu {
+  background-color: #45a3a6;
+}
+
 h1, h2, h3 {
   color: #FF6B6B;
   margin: 0 0 27px;
@@ -57,7 +61,10 @@ nav#slide-menu > ul li {
   cursor: pointer;
 }
 nav#slide-menu > ul li:hover {
-  color: black;
+  color: rgb(202, 202, 202);
+}
+nav#slide-menu > ul li a:hover {
+  color: rgb(202, 202, 202);
 }
 nav#slide-menu > ul li:before {
   font-family: "ico";
@@ -78,7 +85,7 @@ nav#slide-menu > ul li:before {
 nav#slide-menu > ul li.sep {
   margin-top: 7px;
   padding-top: 14px;
-  border-top: 1px solid #6b7b8d;
+  border-top: 1px solid #45a3a6;
 }
 nav#slide-menu > ul li.timeline:before {
   content: '\e805';
@@ -166,4 +173,13 @@ body.menu-active div#content {
 
 body.menu-active div#content .menu-trigger {
   left: 294px;
+}
+
+.btn.btn-primary.produits {
+  background-color: #45a3a6;
+  border-color: #45a3a6;
+}
+
+.col-sm-6.panier {
+  text-align : center;
 }

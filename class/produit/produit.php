@@ -57,7 +57,7 @@ class produit{
     }
 
     public function nouveautes(){
-        if($_SESSION['role_id'] == 1) :
+        if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2) {
             $_SESSION['messages'] = [
                 'body' => "Vous devrez connecté en tant que client pour pouvoir effectuer cette tâche !",
                 'type' => "danger"
@@ -67,10 +67,10 @@ class produit{
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit;
             } 
-            
+
             header('Location: index.php?controller=auth&action=index');
             exit;
-        endif;
+        }
         
         $query = 'SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id WHERE p.is_deleted = 0 GROUP BY p.id DESC LIMIT 0, 10';
     
@@ -103,7 +103,7 @@ class produit{
 
     
     public function meilleuresventes(){
-        if($_SESSION['role_id'] == 1) :
+        if($_SESSION['role_id'] != 1 && $_SESSION['role_id'] != 2) {
             $_SESSION['messages'] = [
                 'body' => "Vous devrez connecté en tant que client pour pouvoir effectuer cette tâche !",
                 'type' => "danger"
@@ -116,7 +116,7 @@ class produit{
             
             header('Location: index.php?controller=auth&action=index');
             exit;
-        endif;
+        }
         
         $query = 'SELECT p.id, p.nom, p.description, GROUP_CONCAT(c.nom) AS nom_categorie, p.prix_ht, p.date_creation, p.date_modification FROM produit AS p LEFT JOIN categorie_produit AS cp ON p.id = cp.produit_id LEFT JOIN categorie AS c ON cp.categorie_id = c.id LEFT JOIN commande_produit ON p.id = commande_produit.produit_id WHERE p.is_deleted = 0 GROUP BY p.id DESC LIMIT 0 , 10';
     

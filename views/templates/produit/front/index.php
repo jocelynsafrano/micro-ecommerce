@@ -18,7 +18,7 @@
         <h5 class="card-title">Prix HT :<?= $produit['prix_ht'] ?> €</h5>
         <p class="card-text"><?= $produit['description'] ?></p>
         <p class="card-text">Categories : <?= $produit['nom_categorie'] ?></p>
-        <a class="btn btn-primary" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=<?= $produit['id'] ?>">Ajouter au panier</a>
+        <a class="btn btn-primary produits produits" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=<?= $produit['id'] ?>">Ajouter au panier</a>
 
       </div>
     </div>

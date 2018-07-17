@@ -23,12 +23,12 @@
       <th><?= $commande['id'] ?></td>
       <th><?= $commande['date_creation'] ?></td>
       <td>
-      <a class="btn btn-primary"  href="index.php?controller=commande_produit&amp;action=show&amp;commande_id=<?= $commande['id'] ?>">Voir ligne de commande</a>
+      <a class="btn btn-primary produits"  href="index.php?controller=commande_produit&amp;action=show&amp;commande_id=<?= $commande['id'] ?>">Voir ligne de commande</a>
       <form method="GET" class="delete-form">
         <input type="hidden" name="controller" value="commande">
         <input type="hidden" name="action" value="destroy">
         <input type="hidden" name="commande_id" value="<?= $commande['id'] ?>">
-        <button class="btn btn-primary" type="submit" >Annuler la commande</button> 
+        <button class="btn btn-primary produits" type="submit" >Annuler la commande</button> 
       </form>
       </td>
      

@@ -4,17 +4,17 @@
 <div class="login-container">
   <div class="login-box">   
     <div class="header">
-      <h3>LOGIN</h3>
+      <h3>CONNEXION</h3>
     </div>
     <form method="POST" action="index.php?controller=auth&amp;action=login" class="content">
         <div class="input-box">
           <input name="email" type="text" placeholder=" ">
-          <span>E-mail</span>
+          <span>E-Mail</span>
           <span></span>
         </div>
         <div class="input-box">
           <input name="mdp" type="password" placeholder=" ">
-          <span>password</span>
+          <span>Mot de passe</span>
           <span></span>
         </div>
         <div class="input-box">
@@ -32,27 +32,27 @@
   <div class="login-box register-box">
     <span class="close">+</span>
     <div class="header">
-      <h3>REGISTER</h3>
+      <h3>INSCRIPTION</h3>
     </div>
     <form method="POST" action="index.php?controller=auth&amp;action=signup" class="content">
         <div class="input-box">
           <input name="nom" type="text">
-          <span>Votre nom :</span>
+          <span>Nom</span>
           <span></span>
         </div>
         <div class="input-box">
           <input name="prenom" type="text" >
-          <span>Votre prénom :</span>
+          <span>Prénom</span>
           <span></span>
         </div>
         <div class="input-box">
           <input name="email" type="text">
-          <span>Votre e-mail :</span>
+          <span>E-Mail</span>
           <span></span>
         </div>
         <div class="input-box">
           <input name="mdp" type="password">
-          <span>Votre mot de passe :</span>
+          <span>Mot de passe</span>
           <span></span>
         </div>
          <div class="input-box">
@@ -63,7 +63,7 @@
         </div>
         
         <div class="input-box">
-          <button type="submit" é>S'iscrire</button>          
+          <button type="submit">S'inscrire</button>          
         </div>
 </form>
   </div>

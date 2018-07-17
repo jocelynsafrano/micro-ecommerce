@@ -37,7 +37,7 @@
                   <h5 class="card-title">Prix HT :` + data[i].prix_ht + ` €</h5>
                   <p class="card-text">` + data[i].description + `</p>
                   <p class="card-text">Categories : ` + data[i].nom_categorie + `</p>
-                  <a class="btn btn-primary" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=`  + data[i].id + `">Ajouter au panier</a>
+                  <a class="btn btn-primary produits" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=`  + data[i].id + `">Ajouter au panier</a>
           
                 </div>
               </div>`
@@ -72,7 +72,7 @@
                     <div class="card-body">
                       <h5 class="card-title">` + data[i].nom + `</h5>`
                       + `<p class="card-text">` + data[i].description + `</p>`
-                      + `<a class="btn btn-primary" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=` + data[i].id + `">Ajouter au panier</a>
+                      + `<a class="btn btn-primary produits" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=` + data[i].id + `">Ajouter au panier</a>
                   
                     </div>
                   </div>
@@ -112,7 +112,7 @@
             var content = "";       
             for(let   i=0; i<data.length; i++){
               
-              content += '<tr> <td>' + data[i].id +'</td> <td>' + data[i].nom + '</td> <td>' + data[i].description + '</td> <td>' + data[i].nom_categorie + '</td> <td>' + data[i].prix_ht + '</td> <td>' + data[i].date_creation + '</td> <td>' + data[i].date_modification + '</td> <td>  <a class="btn btn-primary" href="index.php?controller=produit&amp;action=edit&amp;produit_id=' + data[i].id + '">Modifier produit</a> </td><td>  <a class="btn btn-primary" href="index.php?controller=produit&amp;action=destroy&amp;produit_id=' + data[i].id + '">Supprimer produit</a> </td> </tr>';
+              content += '<tr> <td>' + data[i].id +'</td> <td>' + data[i].nom + '</td> <td>' + data[i].description + '</td> <td>' + data[i].nom_categorie + '</td> <td>' + data[i].prix_ht + '</td> <td>' + data[i].date_creation + '</td> <td>' + data[i].date_modification + '</td> <td>  <a class="btn btn-primary produits" href="index.php?controller=produit&amp;action=edit&amp;produit_id=' + data[i].id + '">Modifier produit</a> </td><td>  <a class="btn btn-primary produits" href="index.php?controller=produit&amp;action=destroy&amp;produit_id=' + data[i].id + '">Supprimer produit</a> </td> </tr>';
             }
             
             $('#display_products').html(content);
@@ -150,7 +150,7 @@
                   <h5 class="card-title">Prix HT :` + data[i].prix_ht + ` €</h5>
                   <p class="card-text">` + data[i].description + `</p>
                   <p class="card-text">Categories : ` + data[i].nom_categorie + `</p>
-                  <a class="btn btn-primary" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=`  + data[i].id + `">Ajouter au panier</a>
+                  <a class="btn btn-primary produits" href="index.php?controller=panier_produit&amp;action=store&amp;produit_id=`  + data[i].id + `">Ajouter au panier</a>
           
                 </div>
               </div>`

@@ -15,7 +15,7 @@
             <textarea name="description" type="text" class="form-control" id="description">Description...</textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary produits produits">Submit</button>
         </form>
     </div>
 </div>

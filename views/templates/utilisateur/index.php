@@ -29,13 +29,13 @@
             <td class="date_creation"><?= $user['date_creation'] ?></td>
             <td class="date_modif"><?= $user['date_modification'] ?></td>
             <td class="actions">
-            <a class="btn btn-primary" href="index.php?controller=utilisateur&amp;action=show&amp;id=<?= $user['id'] ?>">Voir</a>
-            <a class="btn btn-primary" href="index.php?controller=utilisateur&amp;action=edit&amp;id=<?= $user['id'] ?>">Edit</a>
+            <a class="btn btn-primary produits" href="index.php?controller=utilisateur&amp;action=show&amp;id=<?= $user['id'] ?>">Voir</a>
+            <a class="btn btn-primary produits" href="index.php?controller=utilisateur&amp;action=edit&amp;id=<?= $user['id'] ?>">Edit</a>
             <form method="GET" class="delete-form">
             <input type="hidden" name="controller" value="utilisateur">
             <input type="hidden" name="action" value="destroy">
             <input type="hidden" name="id" value="<?= $user['id'] ?>">
-            <button class="btn btn-primary" type="submit" >Supprimer</button> 
+            <button class="btn btn-primary produits" type="submit" >Supprimer</button> 
             </form>
             
             </td>
