@@ -7,15 +7,15 @@
     <div class="col-md-6 offset-md-3 mt-4">
         <form action="index.php?controller=categorie&amp;action=store" method="POST">
         <div class="form-group">
-            <label for="nom">Email address</label>
-            <input name="nom" type="text" class="form-control" id="nom" placeholder="Nom produit">
+            <label for="nom">Nom de la catégorie :</label>
+            <input name="nom" type="text" class="form-control" id="nom" placeholder="Fruits et légumes">
         </div>
         <div class="form-group">
-            <label for="description">Password</label>
-            <textarea name="description" type="text" class="form-control" id="description">Description...</textarea>
+            <label for="description">Description :</label>
+            <textarea name="description" type="text" class="form-control" id="description"> </textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary produits produits">Submit</button>
+        <button type="submit" class="btn btn-primary produits produits">Créer</button>
         </form>
     </div>
 </div>

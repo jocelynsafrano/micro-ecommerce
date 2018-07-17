@@ -17,7 +17,7 @@
             
             <input name="categorie_id" type="hidden" value="<?= $categorie['id'] ?>">
             
-            <button type="submit" class="btn btn-primary produits">Edit</button>
+            <button type="submit" class="btn btn-primary produits">Modifier</button>
         </form>
     </div>
 </div>  

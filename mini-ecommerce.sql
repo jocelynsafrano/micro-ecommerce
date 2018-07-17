@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 18, 2018 at 11:58 PM
--- Server version: 5.7.22-0ubuntu0.16.04.1
--- PHP Version: 7.2.5-1+ubuntu16.04.1+deb.sury.org+1
+-- Client :  127.0.0.1
+-- Généré le :  Mar 17 Juillet 2018 à 18:56
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mini-ecommerce`
+-- Base de données :  `mini-ecommerce`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE `categorie` (
@@ -38,26 +36,24 @@ CREATE TABLE `categorie` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categorie`
+-- Contenu de la table `categorie`
 --
 
 INSERT INTO `categorie` (`id`, `nom`, `description`, `date_creation`, `date_modification`, `is_deleted`) VALUES
-(1, 'Skateboardttttttttt', 'Moyen de tttttttttt', '2018-06-09', '2018-06-18', 1),
-(2, 'Pneu', 'Bandage en caoutchouc', '2018-06-09', '2018-06-09', 1),
-(3, 'EL JAOUHARI', 'test', '2018-06-14', '2018-06-14', 1),
-(4, 'EL JAOUHARI', 'test', '2018-06-14', '2018-06-14', 1),
-(5, 'EL JAOUHARI', 'test', '2018-06-14', '2018-06-14', 1),
-(6, 'nouvelle catégorie', 'nouvelle description', '2018-06-14', '2018-06-14', 1),
-(7, 'Test test', 'test', '2018-06-14', '2018-06-14', 1),
-(8, 'tt', 'tt', '2018-06-14', '2018-06-14', 1),
-(9, 'tt', 'touttou', '2018-06-14', '2018-06-14', 1),
-(10, 'new cat', 'new cat', '2018-06-18', '2018-06-18', 1),
-(11, 'Test fdsq', 'test', '2018-06-18', '2018-06-18', 0);
+(18, 'Bières', '', '2018-07-17', '2018-07-17', 0),
+(17, 'Patisseries', 'À consommer avec modération', '2018-07-17', '2018-07-17', 0),
+(16, 'Pains', 'Ça croustille !', '2018-07-17', '2018-07-17', 0),
+(15, 'Poissons', '', '2018-07-17', '2018-07-17', 0),
+(14, 'Viandes', '', '2018-07-17', '2018-07-17', 0),
+(13, 'Légumes', '', '2018-07-17', '2018-07-17', 0),
+(12, 'Fruits', 'Aliment de bonne qualité nutritionnelle', '2018-07-17', '2018-07-17', 0),
+(19, 'Vins', 'À consommer avec modération', '2018-07-17', '2018-07-17', 0),
+(20, 'Vins', 'À consommer avec modération', '2018-07-17', '2018-07-17', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie_produit`
+-- Structure de la table `categorie_produit`
 --
 
 CREATE TABLE `categorie_produit` (
@@ -67,37 +63,36 @@ CREATE TABLE `categorie_produit` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `categorie_produit`
+-- Contenu de la table `categorie_produit`
 --
 
 INSERT INTO `categorie_produit` (`id`, `categorie_id`, `produit_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 1, 3),
-(4, 1, 4),
-(5, 1, 5),
-(6, 1, 6),
-(7, 1, 7),
-(8, 2, 8),
-(9, 1, 1),
-(10, 2, 1),
-(11, 3, 1),
-(12, 4, 1),
-(13, 3, 1),
-(14, 4, 1),
-(15, 1, 33),
-(16, 2, 33),
-(17, 3, 33),
-(18, 4, 33),
-(19, 1, 36),
-(20, 2, 36),
-(21, 3, 36),
-(22, 4, 36);
+(43, 19, 132),
+(42, 19, 131),
+(41, 19, 130),
+(40, 12, 129),
+(39, 12, 128),
+(38, 12, 127),
+(37, 13, 126),
+(36, 13, 125),
+(35, 13, 124),
+(34, 14, 123),
+(33, 14, 122),
+(32, 15, 121),
+(31, 15, 120),
+(30, 16, 119),
+(29, 16, 118),
+(28, 16, 117),
+(27, 17, 116),
+(26, 17, 115),
+(25, 18, 114),
+(24, 18, 113),
+(23, 18, 112);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande`
+-- Structure de la table `commande`
 --
 
 CREATE TABLE `commande` (
@@ -109,7 +104,7 @@ CREATE TABLE `commande` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande_produit`
+-- Structure de la table `commande_produit`
 --
 
 CREATE TABLE `commande_produit` (
@@ -121,7 +116,7 @@ CREATE TABLE `commande_produit` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panier`
+-- Structure de la table `panier`
 --
 
 CREATE TABLE `panier` (
@@ -131,19 +126,10 @@ CREATE TABLE `panier` (
   `is_deleted` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `panier`
---
-
-INSERT INTO `panier` (`id`, `utilisateur_id`, `date_creation`, `is_deleted`) VALUES
-(1, 3, '2018-06-05', 0),
-(3, 103, NULL, 0),
-(4, 102, '2018-06-14', 0);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `panier_produit`
+-- Structure de la table `panier_produit`
 --
 
 CREATE TABLE `panier_produit` (
@@ -152,17 +138,10 @@ CREATE TABLE `panier_produit` (
   `produit_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `panier_produit`
---
-
-INSERT INTO `panier_produit` (`id`, `panier_id`, `produit_id`) VALUES
-(1, 1, 1);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produit`
+-- Structure de la table `produit`
 --
 
 CREATE TABLE `produit` (
@@ -177,126 +156,36 @@ CREATE TABLE `produit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produit`
+-- Contenu de la table `produit`
 --
 
 INSERT INTO `produit` (`id`, `utilisateur_id`, `date_creation`, `date_modification`, `nom`, `description`, `prix_ht`, `is_deleted`) VALUES
-(1, 23, '2018-06-04', '2018-06-14', 'Trucks Chngéeee', 'Armature en alliage d\'aluminium', 60, 1),
-(2, 46, '2018-06-04', '2018-06-14', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(3, 15, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(4, 27, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(5, 82, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(6, 83, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(7, 44, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(8, 12, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(9, 93, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(10, 97, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(11, 75, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(12, 28, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(13, 94, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(14, 61, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(15, 39, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(16, 83, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(17, 89, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(18, 62, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(19, 17, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(20, 44, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(21, 61, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(22, 56, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(23, 87, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(24, 86, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(25, 13, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(26, 56, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(27, 71, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(28, 33, '2018-06-04', '2018-06-13', 'Wheels modified', 'Roue changé', 451, 1),
-(29, 93, '2018-06-04', '2018-06-14', 'Chnged changed product', 'Roue en polyurethane', 45, 1),
-(30, 97, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 1),
-(31, 85, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(32, 12, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(33, 76, '2018-06-04', '2018-06-18', 'Trucks Edited', 'edited description', 606, 1),
-(34, 54, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(35, 19, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(36, 73, '2018-06-04', '2018-06-18', 'Wheels', 'Roue en polyurethane', 45, 0),
-(37, 48, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(38, 43, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(39, 78, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(40, 67, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(41, 46, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 1),
-(42, 18, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(43, 93, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(44, 59, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(45, 22, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(46, 32, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(47, 31, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(48, 55, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(49, 25, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(50, 23, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(51, 52, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(52, 22, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(53, 88, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(54, 66, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(55, 62, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(56, 17, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(57, 22, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(58, 96, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(59, 41, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(60, 91, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(61, 96, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(62, 57, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(63, 49, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(64, 84, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(65, 16, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(66, 82, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(67, 82, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(68, 75, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(69, 33, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(70, 42, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(71, 42, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(72, 25, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(73, 13, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(74, 76, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(75, 31, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(76, 51, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(77, 19, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(78, 96, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(79, 67, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(80, 78, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(81, 92, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(82, 35, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(83, 86, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(84, 15, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(85, 96, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(86, 59, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(87, 39, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(88, 76, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(89, 11, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(90, 72, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(91, 87, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(92, 38, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(93, 48, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(94, 28, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(95, 19, '2018-06-04', '2018-06-04', 'Trucks', 'Armature en alliage d\'aluminium', 60, 0),
-(96, 86, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(97, 34, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(98, 96, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(99, 82, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(100, 78, '2018-06-04', '2018-06-04', 'Wheels', 'Roue en polyurethane', 45, 0),
-(101, 101, NULL, NULL, 'tesst', 'test', 123, 0),
-(102, 101, NULL, NULL, 'qsdfqsfqssd', 'fqdsfqsf', 987, 0),
-(103, 101, NULL, NULL, 'bloubloub', 'bloublbou', 123, 1),
-(104, 101, NULL, NULL, 'touktou', 'touttou', 123, 1),
-(105, 101, '2018-06-05', NULL, '1234789', '235', 132, 0),
-(106, 101, '2018-06-05', '2018-06-05', '1234789', '235', 132, 0),
-(107, 101, '2018-06-05', '2018-06-05', '1234789', '235', 132, 1),
-(108, 101, '2018-06-05', '2018-06-05', 'aze', 'ae', 123465, 0),
-(109, 101, '2018-06-05', '2018-06-05', 'aze', 'ae', 123465, 0),
-(110, 110, '2018-06-18', NULL, 'tak tak', 'takta', 123456, 0),
-(111, 110, '2018-06-18', NULL, 'tesst', 'test', 123, 1);
+(112, 111, '2018-07-17', NULL, 'Grimbergen', 'Bière blonde', 4, 0),
+(113, 111, '2018-07-17', NULL, 'Guiness', 'Bière brune', 3, 0),
+(114, 111, '2018-07-17', NULL, 'Alésia', 'Bière blonde bio de Bourgogne', 5, 0),
+(115, 111, '2018-07-17', NULL, 'Assortiment patisseries', 'Cinq gâteaux délicieux', 5, 0),
+(116, 111, '2018-07-17', NULL, 'Éclairs chocolat', 'Deux éclairs, un goût du tonerre', 2, 0),
+(117, 111, '2018-07-17', NULL, 'Pain au seigle', 'Tranché, 500g', 1, 0),
+(118, 111, '2018-07-17', NULL, 'Pain de mie complet', 'Quatorze tranches', 0, 0),
+(119, 111, '2018-07-17', NULL, 'Baguette précuite', '250g', 1, 0),
+(120, 111, '2018-07-17', NULL, 'Pavés de saumon', 'Les quatre pavés, 560g', 15, 0),
+(121, 111, '2018-07-17', NULL, 'Poisson panés', 'Barquette de 210g', 4, 0),
+(122, 111, '2018-07-17', NULL, 'Steaks hachés pur boeuf', '15% de MG, la barquette de deux, 250g', 3, 0),
+(123, 111, '2018-07-17', NULL, 'Viande bovine', 'Deux hampes, 260g', 6, 0),
+(124, 111, '2018-07-17', '2018-07-17', 'Poivrons rouge et vert', 'Bio, 2 couleurs, 2 euros', 2, 0),
+(125, 111, '2018-07-17', NULL, 'Avocat', 'Avocat lance défense, ce n\'est pas très efficace', 1, 0),
+(126, 111, '2018-07-17', NULL, 'Chou Romanesco', 'Mauvais mais bon pour la santé', 3, 0),
+(127, 111, '2018-07-17', NULL, 'Melon charentais jaune', 'Bio, vendu à la pièce', 2, 0),
+(128, 111, '2018-07-17', NULL, 'Cerises rouges Burlat', 'La barquette de 750g', 4, 0),
+(129, 111, '2018-07-17', NULL, 'Myrtilles', 'La barquette de 500g', 5, 0),
+(130, 111, '2018-07-17', '2018-07-17', 'Vin rouge Bordeaux 2016', 'La bouteille de 75cl', 5, 0),
+(131, 111, '2018-07-17', '2018-07-17', 'Vin rouge Medoc 2012', 'La bouteille de 75cl', 15, 0),
+(132, 111, '2018-07-17', NULL, 'Vin blanc Pays d\'Oc Bio', 'La bouteille de 75cl', 5, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Structure de la table `role`
 --
 
 CREATE TABLE `role` (
@@ -305,7 +194,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
+-- Contenu de la table `role`
 --
 
 INSERT INTO `role` (`id`, `nom`) VALUES
@@ -315,7 +204,7 @@ INSERT INTO `role` (`id`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -334,7 +223,7 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utilisateur`
+-- Contenu de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `cp`, `ville_id`, `telephone`, `mdp`, `role_id`, `date_creation`, `date_modification`, `is_deleted`) VALUES
@@ -437,33 +326,34 @@ INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `email`, `cp`, `ville_id`, `te
 (107, 'tata', 'tata', 'toto@toto.com', '0000', 0, '0000000000', '25f9e794323b453885f5181f1b624d0b', 2, '2018-06-18', '2018-06-18', 0),
 (108, 'rara', 'rara', 'rara@rara.com', '0000', 0, '0000000000', '25f9e794323b453885f5181f1b624d0b', 2, '2018-06-18', '2018-06-18', 0),
 (109, 'jaja', 'jaja', 'jaja@jaja.com', '0000', 0, '0000000000', '25f9e794323b453885f5181f1b624d0b', 2, '2018-06-18', '2018-06-18', 0),
-(110, 'kaka', 'kaka', 'kaka@kaka.com', '0000', 0, '0000000000', '25f9e794323b453885f5181f1b624d0b', 1, '2018-06-18', '2018-06-18', 0);
+(110, 'kaka', 'kaka', 'kaka@kaka.com', '0000', 0, '0000000000', '25f9e794323b453885f5181f1b624d0b', 1, '2018-06-18', '2018-06-18', 0),
+(111, 'jocelynTest', 'azerty', 'azerty@azerty.com', '0000', 0, '0000000000', 'ab4f63f9ac65152575886860dde480a1', 1, '2018-07-17', '2018-07-17', 0);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `categorie`
+-- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categorie_produit`
+-- Index pour la table `categorie_produit`
 --
 ALTER TABLE `categorie_produit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `commande`
+-- Index pour la table `commande`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`id`),
   ADD KEY `utilisateur_id` (`utilisateur_id`);
 
 --
--- Indexes for table `commande_produit`
+-- Index pour la table `commande_produit`
 --
 ALTER TABLE `commande_produit`
   ADD PRIMARY KEY (`id`),
@@ -471,14 +361,14 @@ ALTER TABLE `commande_produit`
   ADD KEY `commande_id` (`commande_id`);
 
 --
--- Indexes for table `panier`
+-- Index pour la table `panier`
 --
 ALTER TABLE `panier`
   ADD PRIMARY KEY (`id`),
   ADD KEY `utilisateur_id` (`utilisateur_id`);
 
 --
--- Indexes for table `panier_produit`
+-- Index pour la table `panier_produit`
 --
 ALTER TABLE `panier_produit`
   ADD PRIMARY KEY (`id`),
@@ -486,118 +376,108 @@ ALTER TABLE `panier_produit`
   ADD KEY `produit_id` (`produit_id`);
 
 --
--- Indexes for table `produit`
+-- Index pour la table `produit`
 --
 ALTER TABLE `produit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role`
+-- Index pour la table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `categorie_produit`
+-- AUTO_INCREMENT pour la table `categorie_produit`
 --
 ALTER TABLE `categorie_produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
--- AUTO_INCREMENT for table `commande`
+-- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
--- AUTO_INCREMENT for table `commande_produit`
+-- AUTO_INCREMENT pour la table `commande_produit`
 --
 ALTER TABLE `commande_produit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
 --
--- AUTO_INCREMENT for table `panier`
+-- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
--- AUTO_INCREMENT for table `panier_produit`
+-- AUTO_INCREMENT pour la table `panier_produit`
 --
 ALTER TABLE `panier_produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `produit`
+-- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+--
+-- Contraintes pour les tables exportées
+--
 
 --
--- Constraints for dumped tables
---
-
---
--- Constraints for table `commande`
+-- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id`);
 
 --
--- Constraints for table `commande_produit`
+-- Contraintes pour la table `commande_produit`
 --
 ALTER TABLE `commande_produit`
   ADD CONSTRAINT `commande_produit_ibfk_1` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`),
   ADD CONSTRAINT `commande_produit_ibfk_2` FOREIGN KEY (`commande_id`) REFERENCES `commande` (`id`);
 
 --
--- Constraints for table `panier`
+-- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
   ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id`);
 
 --
--- Constraints for table `panier_produit`
+-- Contraintes pour la table `panier_produit`
 --
 ALTER TABLE `panier_produit`
   ADD CONSTRAINT `panier_produit_ibfk_1` FOREIGN KEY (`panier_id`) REFERENCES `panier` (`id`),
   ADD CONSTRAINT `panier_produit_ibfk_2` FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
 
 --
--- Constraints for table `utilisateur`
+-- Contraintes pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
